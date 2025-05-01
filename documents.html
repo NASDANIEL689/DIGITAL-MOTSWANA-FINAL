@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Digital Motswana - My Documents</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="./user.html" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="./profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="./documents.html" id="documentsButton" class="active"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="./security.html" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="./verification.html" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="./announcements.html" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="./support.html" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="#" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+          <h2>My Documents</h2>
+          
+          <div class="documents-grid">
+            <div class="document-card">
+              <div class="document-icon"><i class="fas fa-id-card"></i></div>
+              <h3>National ID</h3>
+              <p class="status verified">Verified</p>
+              <div class="document-actions">
+                <button class="btn-view"><i class="fas fa-eye"></i> View</button>
+                <button class="btn-update"><i class="fas fa-upload"></i> Update</button>
+              </div>
+            </div>
+
+            <div class="document-card">
+              <div class="document-icon"><i class="fas fa-passport"></i></div>
+              <h3>Passport</h3>
+              <p class="status pending">Pending</p>
+              <div class="document-actions">
+                <button class="btn-view"><i class="fas fa-eye"></i> View</button>
+                <button class="btn-update"><i class="fas fa-upload"></i> Update</button>
+              </div>
+            </div>
+
+            <div class="document-card">
+              <div class="document-icon"><i class="fas fa-graduation-cap"></i></div>
+              <h3>Education Certificates</h3>
+              <p class="status verified">Verified</p>
+              <div class="document-actions">
+                <button class="btn-view"><i class="fas fa-eye"></i> View</button>
+                <button class="btn-update"><i class="fas fa-upload"></i> Update</button>
+              </div>
+            </div>
+
+            <div class="document-card add-new">
+              <div class="document-icon"><i class="fas fa-plus"></i></div>
+              <h3>Add New Document</h3>
+              <p>Upload a new document</p>
+              <div class="document-actions">
+                <button class="btn-add"><i class="fas fa-plus"></i> Add Document</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/documents.js"></script>
+  </body>
+</html>

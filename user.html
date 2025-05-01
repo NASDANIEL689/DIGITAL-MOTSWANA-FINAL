@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <title>Digital Motswana - User Dashboard</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="#" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="#" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="#" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="#" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="#" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="#" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="#" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="#" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+          <div class="left-group">
+            <div class="user-info">
+              <div class="info-text">
+                <h3><span id="userName">Loading...</span></h3>
+                <div class="info-grid">
+                  <div><strong>Date of Birth:</strong> <span id="userDob">Loading...</span></div>
+                  <div><strong>ID Number:</strong> <span id="userId">Loading...</span></div>
+                  <div><strong>Status:</strong> <span class="verified">Verified ✓</span></div>
+                  <div><strong>Last Updated:</strong> <span id="lastUpdated">Loading...</span></div>
+                  <div><strong>Email:</strong> <span id="userEmail">Loading...</span></div>
+                  <div><strong>Phone:</strong> <span id="userPhone">Loading...</span></div>
+                </div>
+              </div>
+              <img id="userProfilePicture" src="https://banner2.cleanpng.com/lnd/20240806/xl/3770fe02ff172d4531ec0aaf53417e.webp" alt="Profile Picture">
+            </div>
+
+            <div class="box-row">
+              <div class="extra-box education">
+                <h3>Education</h3>
+                <div id="educationList">
+                  <p>Loading education details...</p>
+                </div>
+                <button class="add-more-btn" id="addEducation"><span class="icon">➕</span>Add More</button>
+              </div>
+
+              <div class="extra-box clearance">
+                <h3>Police Clearance</h3>
+                <p>Status: <span class="verified">Clear ✓</span></p>
+                <p>Last Check: <span id="lastClearanceCheck">Loading...</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-group">
+            <div class="live-data-card">
+              <h3>Stored Documents</h3>
+              <div class="document-list" id="documentList">
+                <div class="document-item">
+                  <span class="icon">📘</span>
+                  <span class="doc-name">National ID</span>
+                  <span class="status verified">✓</span>
+                </div>
+                <div class="document-item">
+                  <span class="icon">🛂</span>
+                  <span class="doc-name">Passport</span>
+                  <span class="status verified">✓</span>
+                </div>
+                <div class="document-item">
+                  <span class="icon">🎓</span>
+                  <span class="doc-name">Certificates</span>
+                  <span class="status verified">✓</span>
+                </div>
+                <button class="add-more-btn documents-btn" id="addDocument"><span class="icon">➕</span>Add Document</button>
+              </div>
+            </div>
+
+            <div class="extra-box activity">
+              <h3>Recent Activity</h3>
+              <div class="activity-list" id="activityList">
+                <p>Loading recent activities...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/user.js"></script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Digital Motswana - Announcements</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="./user.html" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="./profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="./documents.html" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="./security.html" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="./verification.html" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="./announcements.html" id="announcementsButton" class="active"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="./support.html" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="#" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+          <h2>Announcements</h2>
+          
+          <div class="announcements-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="important">Important</button>
+            <button class="filter-btn" data-filter="updates">Updates</button>
+            <button class="filter-btn" data-filter="maintenance">Maintenance</button>
+          </div>
+
+          <div class="announcements-list">
+            <div class="announcement-card important">
+              <div class="announcement-header">
+                <span class="badge important">Important</span>
+                <span class="date">April 28, 2025</span>
+              </div>
+              <h3>System Maintenance Notice</h3>
+              <p>The system will undergo scheduled maintenance on May 1st, 2025, from 2:00 AM to 4:00 AM GMT+2. During this time, the service will be temporarily unavailable.</p>
+              <div class="announcement-footer">
+                <button class="btn-secondary">Read More</button>
+                <span class="time-ago">2 hours ago</span>
+              </div>
+            </div>
+
+            <div class="announcement-card updates">
+              <div class="announcement-header">
+                <span class="badge updates">Update</span>
+                <span class="date">April 27, 2025</span>
+              </div>
+              <h3>New Features Released</h3>
+              <p>We've added new document verification features and improved the user interface. Check out the latest updates in your dashboard.</p>
+              <div class="announcement-footer">
+                <button class="btn-secondary">Read More</button>
+                <span class="time-ago">1 day ago</span>
+              </div>
+            </div>
+
+            <div class="announcement-card maintenance">
+              <div class="announcement-header">
+                <span class="badge maintenance">Maintenance</span>
+                <span class="date">April 25, 2025</span>
+              </div>
+              <h3>Security Updates Completed</h3>
+              <p>We've successfully completed our security infrastructure updates. Your data is now even more secure.</p>
+              <div class="announcement-footer">
+                <button class="btn-secondary">Read More</button>
+                <span class="time-ago">3 days ago</span>
+              </div>
+            </div>
+
+            <div class="announcement-card updates">
+              <div class="announcement-header">
+                <span class="badge updates">Update</span>
+                <span class="date">April 23, 2025</span>
+              </div>
+              <h3>Mobile App Launch</h3>
+              <p>We're excited to announce the launch of our mobile app! Download now from the App Store or Google Play.</p>
+              <div class="announcement-footer">
+                <button class="btn-secondary">Read More</button>
+                <span class="time-ago">5 days ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/announcements.js"></script>
+  </body>
+</html>

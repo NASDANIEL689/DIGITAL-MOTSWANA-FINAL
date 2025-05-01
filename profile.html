@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <title>Digital Motswana - Profile</title>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Toggle Button for Side Menu -->
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Side Menu -->
+      <div class="side-menu" id="sideMenu">
+        <h2>Digital Motswana</h2>
+        <ul>
+          <li>
+            <button id="homeButton">
+              <i class="fas fa-home"></i> Home
+            </button>
+          </li>
+          <li>
+            <button id="profileButton">
+              <i class="fas fa-user"></i> Profile
+            </button>
+          </li>
+          <li>
+            <button id="settingsButton">
+              <i class="fas fa-cog"></i> Settings
+            </button>
+          </li>
+          <li>
+            <button id="logoutButton">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <h1>Profile</h1>
+
+        <!-- Profile Form -->
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="profileName">Name</label>
+            <input type="text" id="profileName" placeholder="Enter your name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="profileSurname">Surname</label>
+            <input type="text" id="profileSurname" placeholder="Enter your surname" required />
+          </div>
+
+          <div class="form-group">
+            <label for="profileDob">Date of Birth</label>
+            <input type="date" id="profileDob" required />
+          </div>
+
+          <div class="form-group">
+            <label for="profilePob">Place of Birth</label>
+            <input type="text" id="profilePob" placeholder="Enter your place of birth" required />
+          </div>
+
+          <div class="form-group">
+            <label for="profileEyeColor">Eye Color</label>
+            <input type="text" id="profileEyeColor" placeholder="Enter your eye color" required />
+          </div>
+
+          <button type="submit">Update Profile</button>
+        </form>
+
+        <!-- Profile Picture Section -->
+        <div class="profile-picture-section">
+          <div class="profile-picture-container">
+            <img src="https://banner2.cleanpng.com/lnd/20240806/xl/3770fe02ff172d4531ec0aaf53417e.webp" alt="Profile Picture" class="profile-picture" id="profilePicture" />
+            <button class="update-picture-button" id="updatePictureButton">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/profile.js"></script>
+  </body>
+</html>

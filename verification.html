@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Digital Motswana - Verification</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="./user.html" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="./profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="./documents.html" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="./security.html" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="./verification.html" id="verificationButton" class="active"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="./announcements.html" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="./support.html" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="#" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+          <h2>Document Verification</h2>
+          
+          <div class="verification-grid">
+            <div class="verification-card">
+              <div class="verification-status completed">
+                <i class="fas fa-check-circle"></i>
+                <h3>Identity Verification</h3>
+                <p>National ID verified</p>
+                <div class="verification-details">
+                  <span><i class="fas fa-calendar"></i> Verified on: Jan 15, 2025</span>
+                  <span><i class="fas fa-clock"></i> Valid until: Jan 15, 2026</span>
+                </div>
+                <button class="btn-secondary">View Details</button>
+              </div>
+            </div>
+
+            <div class="verification-card">
+              <div class="verification-status pending">
+                <i class="fas fa-clock"></i>
+                <h3>Address Verification</h3>
+                <p>Proof of residence pending review</p>
+                <div class="verification-details">
+                  <span><i class="fas fa-calendar"></i> Submitted on: Jan 20, 2025</span>
+                  <span><i class="fas fa-clock"></i> Expected: 2-3 business days</span>
+                </div>
+                <button class="btn-primary">Check Status</button>
+              </div>
+            </div>
+
+            <div class="verification-card">
+              <div class="verification-status not-started">
+                <i class="fas fa-file-upload"></i>
+                <h3>Education Verification</h3>
+                <p>Submit your educational certificates</p>
+                <div class="verification-details">
+                  <span><i class="fas fa-info-circle"></i> Required for complete profile</span>
+                </div>
+                <button class="btn-primary">Start Verification</button>
+              </div>
+            </div>
+
+            <div class="verification-card">
+              <div class="verification-status expired">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Police Clearance</h3>
+                <p>Certificate expired</p>
+                <div class="verification-details">
+                  <span><i class="fas fa-calendar"></i> Expired on: Dec 31, 2024</span>
+                  <span><i class="fas fa-exclamation-triangle"></i> Renewal required</span>
+                </div>
+                <button class="btn-primary">Renew Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="verification-timeline">
+            <h3>Verification Timeline</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot completed"></div>
+                <div class="timeline-content">
+                  <h4>National ID Verified</h4>
+                  <p>Successfully verified your identity</p>
+                  <span class="timeline-date">Jan 15, 2025</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot pending"></div>
+                <div class="timeline-content">
+                  <h4>Address Verification Submitted</h4>
+                  <p>Documents under review</p>
+                  <span class="timeline-date">Jan 20, 2025</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot expired"></div>
+                <div class="timeline-content">
+                  <h4>Police Clearance Expired</h4>
+                  <p>Please renew your certificate</p>
+                  <span class="timeline-date">Dec 31, 2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/verification.js"></script>
+  </body>
+</html>

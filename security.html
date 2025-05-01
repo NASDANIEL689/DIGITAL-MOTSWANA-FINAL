@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Digital Motswana - Security</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="./user.html" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="./profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="./documents.html" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="./security.html" id="securityButton" class="active"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="./verification.html" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="./announcements.html" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="./support.html" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="#" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+          <h2>Security Settings</h2>
+          
+          <div class="security-grid">
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-key"></i></div>
+              <h3>Change Password</h3>
+              <form id="passwordForm" class="security-form">
+                <input type="password" placeholder="Current Password" id="currentPassword" required>
+                <input type="password" placeholder="New Password" id="newPassword" required>
+                <input type="password" placeholder="Confirm New Password" id="confirmPassword" required>
+                <button type="submit" class="btn-primary">Update Password</button>
+              </form>
+            </div>
+
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-mobile-alt"></i></div>
+              <h3>Two-Factor Authentication</h3>
+              <div class="toggle-container">
+                <label class="switch">
+                  <input type="checkbox" id="twoFactorToggle">
+                  <span class="slider round"></span>
+                </label>
+                <span>Enable 2FA</span>
+              </div>
+              <p class="security-info">Add an extra layer of security to your account</p>
+            </div>
+
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-history"></i></div>
+              <h3>Login History</h3>
+              <div class="login-history">
+                <div class="history-item">
+                  <i class="fas fa-desktop"></i>
+                  <div class="history-details">
+                    <p>Windows PC - Chrome</p>
+                    <small>Last access: Just now</small>
+                  </div>
+                  <span class="status current">Current</span>
+                </div>
+                <div class="history-item">
+                  <i class="fas fa-mobile-alt"></i>
+                  <div class="history-details">
+                    <p>iPhone - Safari</p>
+                    <small>Last access: 2 days ago</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-bell"></i></div>
+              <h3>Security Alerts</h3>
+              <div class="alerts-settings">
+                <div class="alert-option">
+                  <label>
+                    <input type="checkbox" checked>
+                    Email alerts for new login
+                  </label>
+                </div>
+                <div class="alert-option">
+                  <label>
+                    <input type="checkbox" checked>
+                    SMS alerts for password changes
+                  </label>
+                </div>
+                <div class="alert-option">
+                  <label>
+                    <input type="checkbox">
+                    Alerts for unrecognized devices
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/security.js"></script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/user.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Digital Motswana - Support</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="./user.html" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="./profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="./documents.html" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="./security.html" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="./verification.html" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="./announcements.html" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="./support.html" id="supportButton" class="active"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="#" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+          <h2>Support Center</h2>
+          
+          <div class="support-grid">
+            <div class="support-card faq">
+              <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+              <div class="faq-list">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <h4>How do I verify my documents?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>Go to the Documents section, select the document you want to verify, and follow the verification process. Make sure your documents are clear and legible.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <h4>What file formats are supported?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>We support PDF, JPG, PNG, and TIFF formats. Files should not exceed 10MB in size.</p>
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <h4>How long does verification take?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>Document verification typically takes 2-3 business days. You'll receive an email notification once the process is complete.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="support-card contact">
+              <h3><i class="fas fa-envelope"></i> Contact Support</h3>
+              <form id="supportForm" class="support-form">
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <select id="subject" required>
+                    <option value="">Select a topic</option>
+                    <option value="technical">Technical Issue</option>
+                    <option value="account">Account Related</option>
+                    <option value="verification">Verification Process</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" rows="5" placeholder="Describe your issue..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="attachment">Attachment (optional)</label>
+                  <input type="file" id="attachment">
+                </div>
+
+                <button type="submit" class="btn-primary">Submit Ticket</button>
+              </form>
+            </div>
+
+            <div class="support-card quick-help">
+              <h3><i class="fas fa-bolt"></i> Quick Help</h3>
+              <div class="help-options">
+                <a href="#" class="help-option">
+                  <i class="fas fa-book"></i>
+                  <span>User Guide</span>
+                </a>
+                <a href="#" class="help-option">
+                  <i class="fas fa-video"></i>
+                  <span>Video Tutorials</span>
+                </a>
+                <a href="#" class="help-option">
+                  <i class="fas fa-comments"></i>
+                  <span>Live Chat</span>
+                </a>
+                <a href="#" class="help-option">
+                  <i class="fas fa-phone"></i>
+                  <span>Call Support</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="support-card status">
+              <h3><i class="fas fa-chart-line"></i> System Status</h3>
+              <div class="status-list">
+                <div class="status-item">
+                  <span class="status-label">Document Upload</span>
+                  <span class="status-value operational">Operational</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-label">Verification System</span>
+                  <span class="status-value operational">Operational</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-label">User Authentication</span>
+                  <span class="status-value operational">Operational</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-label">API Services</span>
+                  <span class="status-value operational">Operational</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/support.js"></script>
+  </body>
+</html>

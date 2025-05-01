@@ -1,0 +1,361 @@
+:root {
+  --primary-color: #00a3e0;     /* Light Blue (Botswana Flag) */
+  --secondary-color: #000000;   /* Black (Botswana Flag) */
+  --accent-color: #ffffff;      /* White (Botswana Flag) */
+  --background-color: #f5f7fa;
+  --success-color: #2ecc71;
+  --pending-color: #f1c40f;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  width: 95%;
+  max-width: 1400px;
+  min-height: 90vh;
+  margin: 20px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.navbar {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  padding: 0 2rem;
+}
+
+.navbar img {
+  height: 200px;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background: var(--secondary-color);
+  color: var(--accent-color);
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.sidebar h3 {
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0 2rem 1rem;
+  text-align: center;
+}
+
+.sidebar a {
+  color: var(--accent-color);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sidebar a:hover {
+  background: var(--primary-color);
+  transform: translateX(10px);
+}
+
+.main {
+  flex-grow: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+}
+
+.content-area {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.left-group, .right-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.left-group {
+  flex: 3;
+}
+
+.right-group {
+  flex: 2;
+}
+
+.user-info {
+  background: var(--accent-color);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info img {
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+}
+
+.user-info .info-text {
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.user-info .info-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.info-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.info-grid div {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.box-row {
+  display: flex;
+  gap: 2rem;
+}
+
+.extra-box {
+  background: var(--accent-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  padding: 1.5rem;
+  flex: 1;
+  min-height: 200px;
+  transition: transform 0.3s ease;
+}
+
+.extra-box:hover {
+  transform: translateY(-5px);
+}
+
+.extra-box h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.live-data-card {
+  background: var(--accent-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  padding: 1.5rem;
+  min-height: 400px;
+}
+
+.document-list {
+  margin-top: 1.5rem;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--background-color);
+  gap: 1rem;
+}
+
+.document-item:last-child {
+  border-bottom: none;
+}
+
+.status {
+  margin-left: auto;
+}
+
+.verified {
+  color: var(--success-color);
+}
+
+.pending {
+  color: var(--pending-color);
+}
+
+.activity-list p {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: var(--background-color);
+}
+
+.add-more-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-color);
+  color: var(--accent-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.add-more-btn:hover {
+  background: #0082b3;
+  transform: translateY(-2px);
+}
+
+.add-more-btn .icon {
+  font-size: 1rem;
+}
+
+.documents-btn {
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+  width: 100%;
+}
+
+.main-content.active {
+  margin-left: 250px;
+}
+
+/* ID Card Section */
+.id-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.id-card h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.id-card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.id-picture img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  border: 2px solid #2da0a8;
+}
+
+.id-details p {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.id-details strong {
+  color: #2da0a8;
+}
+
+/* Services Section */
+.services {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.services button {
+  background-color: #2da0a8;
+  color: #fff;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.services button:hover {
+  background-color: #1f7a7f;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .id-card {
+    max-width: 100%;
+  }
+}
