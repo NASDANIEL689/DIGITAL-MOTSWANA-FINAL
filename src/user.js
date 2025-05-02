@@ -10,6 +10,9 @@ onAuthStateChanged(auth, async (user) => {
     const userName = document.getElementById('userName');
     const userEmail = document.getElementById('userEmail');
     const userId = document.getElementById('userId');
+    const userDob = document.getElementById('userDob');
+    const profileIdNum = document.getElementById('profileIdNum');
+    const userPhone = document.getElementById('userPhone');
     const userProfilePicture = document.getElementById('userProfilePicture');
 
     // Fetch user profile data from Firestore
@@ -18,9 +21,13 @@ onAuthStateChanged(auth, async (user) => {
 
     if (userDoc.exists()) {
       const userData = userDoc.data();
+      console.log('User data fetched from Firestore:', userData); // Added console log
       userName.textContent = userData.name || 'User';
       userEmail.textContent = user.email;
       userId.textContent = user.uid;
+      userDob.textContent = userData.dateOfBirth || 'N/A'; // Added
+      profileIdNum.textContent = userData.idNumber || 'N/A'; // Added
+      userPhone.textContent = userData.phone || 'N/A'; // Added
 
       // Load profile picture if it exists
       if (userData.profilePicture) {
@@ -33,53 +40,75 @@ onAuthStateChanged(auth, async (user) => {
     const sideMenu = document.getElementById('sideMenu');
     const mainContent = document.querySelector('.main-content');
 
-    menuToggle.addEventListener('click', () => {
-      sideMenu.classList.toggle('active');
-      mainContent.classList.toggle('active');
-    });
+    // Check if elements exist before adding event listeners
+    if (menuToggle && sideMenu && mainContent) {
+      menuToggle.addEventListener('click', () => {
+        sideMenu.classList.toggle('active');
+        mainContent.classList.toggle('active');
+      });
+    }
 
     // Logout button
     const logoutButton = document.getElementById('logoutButton');
-    logoutButton.addEventListener('click', () => {
-      signOut(auth)
-        .then(() => {
-          window.location.href = './index.html';
-        })
-        .catch((error) => {
-          console.error('Error signing out:', error);
-        });
-    });
+    if (logoutButton) {
+      logoutButton.addEventListener('click', () => {
+        signOut(auth)
+          .then(() => {
+            window.location.href = './index.html';
+          })
+          .catch((error) => {
+            console.error('Error signing out:', error);
+          });
+      });
+    }
 
     // Home button
     const homeButton = document.getElementById('homeButton');
-    homeButton.addEventListener('click', () => {
-      window.location.href = './user.html';
-    });
+    if (homeButton) {
+      homeButton.addEventListener('click', () => {
+        window.location.href = './user.html';
+      });
+    }
 
     // Profile button
     const profileButton = document.getElementById('profileButton');
-    profileButton.addEventListener('click', () => {
-      window.location.href = './profile.html';
-    });
+    if (profileButton) {
+      profileButton.addEventListener('click', () => {
+        window.location.href = './profile.html';
+      });
+    }
 
     // Settings button
     const settingsButton = document.getElementById('settingsButton');
-    settingsButton.addEventListener('click', () => {
-      alert('Settings feature coming soon!');
-    });
+    if (settingsButton) {
+      settingsButton.addEventListener('click', () => {
+        alert('Settings feature coming soon!');
+      });
+    }
 
-    // Service buttons
-    document.getElementById('applyForCertification').addEventListener('click', () => {
-      alert('Apply for Certification feature coming soon!');
-    });
+    // Service buttons - Check if elements exist before adding event listeners
+    const applyForCertificationButton = document.getElementById('applyForCertification');
+    if (applyForCertificationButton) {
+      applyForCertificationButton.addEventListener('click', () => {
+        alert('Apply for Certification feature coming soon!');
+      });
+    }
 
-    document.getElementById('updateProfile').addEventListener('click', () => {
-      window.location.href = './profile.html';
-    });
+    const updateProfileButton = document.getElementById('updateProfile');
+    if (updateProfileButton) {
+      updateProfileButton.addEventListener('click', () => {
+        window.location.href = './profile.html';
+      });
+    }
 
-    document.getElementById('checkStatus').addEventListener('click', () => {
-      alert('Check Application Status feature coming soon!');
-    });
+    const checkStatusButton = document.getElementById('checkStatus');
+    if (checkStatusButton) {
+      checkStatusButton.addEventListener('click', () => {
+        alert('Check Application Status feature coming soon!');
+      });
+    }
+
+
   } else {
     // User is not signed in, redirect to login page
     window.location.href = 'index.html';
