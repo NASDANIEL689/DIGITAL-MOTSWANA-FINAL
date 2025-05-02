@@ -1,66 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href="/src/style.css" />
-    <title>Login Page | Caged coder</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identity Vault - Secure Identity Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Identity Vault</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="login.html" class="login-btn">Login</a></li>
+        <li><a href="register.html" class="register-btn">Register</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
 
-  <body>
-    <div class="container" id="container">
-      <div class="form-container sign-up">
-        <form id="signUpForm">
-          <h1>Create Account</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-          <span>or use your email for registration</span>
-          <input type="text" id="signUpName" placeholder="Name" />
-          <input type="email" id="signUpEmail" placeholder="Email" />
-          <input type="password" id="signUpPassword" placeholder="Password" />
-          <button type="submit">Sign Up</button>
-        </form>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Secure Your Identity in One Place</h1>
+        <p>Upload, manage, and share your identification documents securely with our QR code technology.</p>
+        <a href="register.html" class="cta-button">Get Started</a>
       </div>
-      <div class="form-container sign-in">
-        <form id="signInForm">
-          <h1>Sign In</h1>
-          <div class="social-icons">
-            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-          <span>or use your email password</span>
-          <input type="email" id="signInEmail" placeholder="Email" />
-          <input type="password" id="signInPassword" placeholder="Password" />
-          <a href="#">Forget Your Password?</a>
-          <button type="submit">Sign In</button>
-        </form>
+      <div class="hero-image">
+        <img src="/placeholder.svg?height=400&width=400" alt="Identity Management Illustration">
       </div>
-      <div class="toggle-container">
-        <div class="toggle">
-          <div class="toggle-panel toggle-left">
-            <h1>Digital Motswana !</h1>
-            <p>lets help you keep all your information in one place </p>
-            <button class="hidden" id="login">Sign In</button>
+    </section>
+
+    <section id="features" class="features">
+      <h2>Key Features</h2>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Document Storage</h3>
+          <p>Securely store your ID card, passport, driver's license, and other important documents.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Enhanced Security</h3>
+          <p>Your data is encrypted and protected with the latest security protocols.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>QR Code Access</h3>
+          <p>Generate a QR code that displays your information when scanned.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Easy Updates</h3>
+          <p>Update your information anytime and your QR code automatically reflects the changes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Create an Account</h3>
+          <p>Sign up for a free account to get started with Identity Vault.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Upload Documents</h3>
+          <p>Upload your identification documents securely to your account.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Generate QR Code</h3>
+          <p>Create a QR code that contains a summary of your identity information.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Share Securely</h3>
+          <p>Share your QR code with trusted parties for quick identity verification.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact Us</h2>
+      <div class="contact-container">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
           </div>
-          <div class="toggle-panel toggle-right">
-            <h1>Digital, Motswana!</h1>
-            <p>your local blue print system</p>
-            <button class="hidden" id="register">Sign Up</button>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <p>Have questions about our service? Reach out to us directly.</p>
+          <div class="info-item">
+            <span class="info-label">Email:</span>
+            <span class="info-value">support@identityvault.com</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone:</span>
+            <span class="info-value">+1 (555) 123-4567</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Address:</span>
+            <span class="info-value">123 Security Ave, Digital City, DC 10101</span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <script type="module" src="/src/script.js"></script>
-  </body>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <h2>Identity Vault</h2>
+        <p>Secure Identity Management</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Data Protection</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Identity Vault. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>

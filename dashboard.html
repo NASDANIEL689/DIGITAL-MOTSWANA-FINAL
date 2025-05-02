@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Identity Vault</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body class="dashboard-body">
+  <header class="dashboard-header">
+    <div class="logo">
+      <h1>Identity Vault</h1>
+    </div>
+    <div class="user-menu">
+      <div class="user-info">
+        <img src="/placeholder.svg?height=40&width=40" alt="User Avatar" class="user-avatar">
+        <span class="user-name">John Doe</span>
+      </div>
+      <div class="dropdown-menu">
+        <a href="#" id="profile-link">Profile</a>
+        <a href="#" id="settings-link">Settings</a>
+        <a href="index.html" id="logout-link">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>Digital Motswana</h2>
+    <button class="menu-toggle">
+      <span class="menu-icon">≡</span>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="#" data-section="documents"><span class="icon">🏠</span> Home</a></li>
+      <li><a href="#" data-section="profile"><span class="icon">👤</span> Profile</a></li>
+      <li><a href="#" data-section="settings"><span class="icon">⚙️</span> Settings</a></li>
+      <li><a href="index.html"><span class="icon">🚪</span> Logout</a></li>
+    </ul>
+  </nav>
+</aside>
+
+    <main class="dashboard-main">
+      <section id="documents" class="dashboard-section active">
+        <div class="section-header">
+          <h2>My Documents</h2>
+          <button id="upload-document-btn" class="primary-btn">Upload New Document</button>
+        </div>
+
+        <div class="documents-grid">
+          <div class="document-card">
+            <div class="document-icon">🪪</div>
+            <div class="document-info">
+              <h3>ID Card</h3>
+              <p>National Identification Card</p>
+              <span class="document-date">Uploaded: May 15, 2025</span>
+            </div>
+            <div class="document-actions">
+              <button class="action-btn view-btn">View</button>
+              <button class="action-btn update-btn">Update</button>
+              <button class="action-btn delete-btn">Delete</button>
+            </div>
+          </div>
+
+          <div class="document-card">
+            <div class="document-icon">🛂</div>
+            <div class="document-info">
+              <h3>Passport</h3>
+              <p>International Passport</p>
+              <span class="document-date">Uploaded: April 3, 2025</span>
+            </div>
+            <div class="document-actions">
+              <button class="action-btn view-btn">View</button>
+              <button class="action-btn update-btn">Update</button>
+              <button class="action-btn delete-btn">Delete</button>
+            </div>
+          </div>
+
+          <div class="document-card">
+            <div class="document-icon">🚗</div>
+            <div class="document-info">
+              <h3>Driver's License</h3>
+              <p>State Driver's License</p>
+              <span class="document-date">Uploaded: June 10, 2025</span>
+            </div>
+            <div class="document-actions">
+              <button class="action-btn view-btn">View</button>
+              <button class="action-btn update-btn">Update</button>
+              <button class="action-btn delete-btn">Delete</button>
+            </div>
+          </div>
+
+          <div class="document-card add-card">
+            <div class="add-document">
+              <span class="add-icon">+</span>
+              <p>Add New Document</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="qr-code" class="dashboard-section">
+        <div class="section-header">
+          <h2>Your Identity QR Code</h2>
+        </div>
+
+        <div class="qr-code-container">
+          <div class="qr-code-display">
+            <div id="qr-code-image"></div>
+            <p>Scan this QR code to view your identity summary</p>
+          </div>
+
+          <div class="qr-code-options">
+            <h3>QR Code Options</h3>
+            <div class="option-group">
+              <label for="include-name">Include Name</label>
+              <input type="checkbox" id="include-name" checked>
+            </div>
+            <div class="option-group">
+              <label for="include-dob">Include Date of Birth</label>
+              <input type="checkbox" id="include-dob" checked>
+            </div>
+            <div class="option-group">
+              <label for="include-address">Include Address</label>
+              <input type="checkbox" id="include-address" checked>
+            </div>
+            <div class="option-group">
+              <label for="include-id-number">Include ID Number</label>
+              <input type="checkbox" id="include-id-number" checked>
+            </div>
+            <div class="option-group">
+              <label for="include-photo">Include Photo</label>
+              <input type="checkbox" id="include-photo">
+            </div>
+            
+            <button id="generate-qr-btn" class="primary-btn">Generate QR Code</button>
+            <button id="download-qr-btn" class="secondary-btn">Download QR Code</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" class="dashboard-section">
+  <div class="section-header">
+    <h2>Profile</h2>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-content">
+      <form class="profile-form">
+        <div class="form-group">
+          <label for="profile-name">Name</label>
+          <input type="text" id="profile-name" value="John">
+        </div>
+        
+        <div class="form-group">
+          <label for="profile-surname">Surname</label>
+          <input type="text" id="profile-surname" value="Doe">
+        </div>
+        
+        <div class="form-group">
+          <label for="profile-dob">Date of Birth</label>
+          <input type="date" id="profile-dob" value="1990-01-01">
+        </div>
+        
+        <div class="form-group">
+          <label for="profile-birthplace">Place of Birth</label>
+          <input type="text" id="profile-birthplace" value="New York">
+        </div>
+        
+        <div class="form-group">
+          <label for="profile-eye-color">Eye Color</label>
+          <input type="text" id="profile-eye-color" value="Brown">
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="update-profile-btn">Update Profile</button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="profile-image">
+      <img src="/placeholder.svg?height=150&width=150" alt="Profile Picture" class="profile-avatar">
+      <button class="change-photo-btn">Change Photo</button>
+    </div>
+  </div>
+</section>
+
+      <section id="security" class="dashboard-section">
+        <div class="section-header">
+          <h2>Security Settings</h2>
+        </div>
+
+        <div class="security-container">
+          <div class="security-card">
+            <h3>Change Password</h3>
+            <form class="password-form">
+              <div class="form-group">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password">
+              </div>
+              <div class="form-group">
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password">
+              </div>
+              <div class="form-group">
+                <label for="confirm-new-password">Confirm New Password</label>
+                <input type="password" id="confirm-new-password">
+              </div>
+              <button type="submit" class="primary-btn">Update Password</button>
+            </form>
+          </div>
+
+          <div class="security-card">
+            <h3>Two-Factor Authentication</h3>
+            <div class="toggle-container">
+              <span>Enable 2FA</span>
+              <label class="switch">
+                <input type="checkbox" id="tfa-toggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <p>Enhance your account security by enabling two-factor authentication.</p>
+            <button id="setup-2fa-btn" class="secondary-btn" disabled>Set Up 2FA</button>
+          </div>
+
+          <div class="security-card">
+            <h3>Login History</h3>
+            <div class="login-history">
+              <div class="login-entry">
+                <div class="login-info">
+                  <p class="login-device">Chrome on Windows</p>
+                  <p class="login-location">New York, USA</p>
+                </div>
+                <p class="login-time">Today, 2:30 PM</p>
+              </div>
+              <div class="login-entry">
+                <div class="login-info">
+                  <p class="login-device">Safari on iPhone</p>
+                  <p class="login-location">New York, USA</p>
+                </div>
+                <p class="login-time">Yesterday, 8:15 AM</p>
+              </div>
+              <div class="login-entry">
+                <div class="login-info">
+                  <p class="login-device">Firefox on MacOS</p>
+                  <p class="login-location">Boston, USA</p>
+                </div>
+                <p class="login-time">July 20, 2025, 4:45 PM</p>
+              </div>
+            </div>
+            <button class="text-btn">View All Login Activity</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="dashboard-section">
+        <div class="section-header">
+          <h2>Account Settings</h2>
+        </div>
+
+        <div class="settings-container">
+          <div class="settings-card">
+            <h3>Notifications</h3>
+            <div class="settings-options">
+              <div class="option-group">
+                <label for="email-notifications">Email Notifications</label>
+                <label class="switch">
+                  <input type="checkbox" id="email-notifications" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="option-group">
+                <label for="security-alerts">Security Alerts</label>
+                <label class="switch">
+                  <input type="checkbox" id="security-alerts" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="option-group">
+                <label for="document-reminders">Document Expiry Reminders</label>
+                <label class="switch">
+                  <input type="checkbox" id="document-reminders" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="option-group">
+                <label for="marketing-emails">Marketing Emails</label>
+                <label class="switch">
+                  <input type="checkbox" id="marketing-emails">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3>Privacy</h3>
+            <div class="settings-options">
+              <div class="option-group">
+                <label for="data-sharing">Data Sharing</label>
+                <label class="switch">
+                  <input type="checkbox" id="data-sharing">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="option-group">
+                <label for="analytics">Analytics Participation</label>
+                <label class="switch">
+                  <input type="checkbox" id="analytics" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <button class="text-btn">Download My Data</button>
+          </div>
+
+          <div class="settings-card danger-zone">
+            <h3>Danger Zone</h3>
+            <p>These actions are irreversible. Please proceed with caution.</p>
+            <div class="danger-actions">
+              <button class="danger-btn">Delete All Documents</button>
+              <button class="danger-btn">Deactivate Account</button>
+              <button class="danger-btn">Delete Account</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="upload-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Upload Document</h2>
+      <form id="document-upload-form">
+        <div class="form-group">
+          <label for="document-type">Document Type</label>
+          <select id="document-type" required>
+            <option value="">Select Document Type</option>
+            <option value="id-card">ID Card</option>
+            <option value="passport">Passport</option>
+            <option value="drivers-license">Driver's License</option>
+            <option value="birth-certificate">Birth Certificate</option>
+            <option value="social-security">Social Security Card</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group" id="other-document-type-group" style="display: none;">
+          <label for="other-document-type">Specify Document Type</label>
+          <input type="text" id="other-document-type">
+        </div>
+        
+        <div class="form-group">
+          <label for="document-number">Document Number</label>
+          <input type="text" id="document-number" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="issue-date">Issue Date</label>
+          <input type="date" id="issue-date" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="expiry-date">Expiry Date</label>
+          <input type="date" id="expiry-date" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="issuing-authority">Issuing Authority</label>
+          <input type="text" id="issuing-authority" required>
+        </div>
+        
+        <div class="form-group file-upload">
+          <label for="document-front">Front of Document</label>
+          <input type="file" id="document-front" accept="image/*" required>
+          <div class="file-preview" id="front-preview"></div>
+        </div>
+        
+        <div class="form-group file-upload">
+          <label for="document-back">Back of Document (if applicable)</label>
+          <input type="file" id="document-back" accept="image/*">
+          <div class="file-preview" id="back-preview"></div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="primary-btn">Upload Document</button>
+          <button type="button" class="secondary-btn cancel-upload">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Identity Vault</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Identity Vault</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="login.html" class="login-btn active">Login</a></li>
+        <li><a href="register.html" class="register-btn">Register</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="auth-container">
+      <div class="auth-form-container">
+        <h2>Welcome Back</h2>
+        <p>Log in to access your secure identity documents.</p>
+        
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          
+          <div class="form-group checkbox">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+          </div>
+          
+          <button type="submit" class="auth-button">Log In</button>
+        </form>
+        
+        <div class="auth-footer">
+          <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+      </div>
+      
+      <div class="auth-image">
+        <img src="/placeholder.svg?height=500&width=500" alt="Secure Login">
+        <div class="auth-image-text">
+          <h3>Secure Access</h3>
+          <p>Your identity documents are protected with enterprise-grade security.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Identity Vault. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
