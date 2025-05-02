@@ -18,9 +18,12 @@ onAuthStateChanged(auth, async (user) => {
     const profileForm = document.getElementById('profileForm');
     const profileName = document.getElementById('profileName');
     const profileSurname = document.getElementById('profileSurname');
+    const profileIdNum = document.getElementById('profileIdNum');
     const profileDob = document.getElementById('profileDob');
     const profilePob = document.getElementById('profilePob');
     const profileEyeColor = document.getElementById('profileEyeColor');
+    const profilePhone = document.getElementById('profilePhone'); // Added phone element
+    const profileLastUpdate = document.getElementById('profileLastUpdate'); // Added last update element
     const profilePicture = document.getElementById('profilePicture');
     const updatePictureButton = document.getElementById('updatePictureButton');
 
@@ -35,9 +38,19 @@ onAuthStateChanged(auth, async (user) => {
 
         profileName.value = userData.name || '';
         profileSurname.value = userData.surname || '';
+        profileIdNum.value = userData.idNum || '';
         profileDob.value = userData.dob || '';
         profilePob.value = userData.pob || '';
         profileEyeColor.value = userData.eyeColor || '';
+        profilePhone.value = userData.phone || ''; // Display phone number
+
+        // Display last update date if available
+        if (userData.lastUpdate) {
+          const lastUpdateDate = new Date(userData.lastUpdate.seconds * 1000); // Convert Firestore timestamp to Date object
+          profileLastUpdate.textContent = lastUpdateDate.toLocaleString(); // Display formatted date
+        } else {
+          profileLastUpdate.textContent = 'Never updated';
+        }
 
         // Load profile picture if it exists
         if (userData.profilePicture) {
@@ -49,10 +62,12 @@ onAuthStateChanged(auth, async (user) => {
         }
       } else {
         console.log('No user data found in Firestore.');
+        profileLastUpdate.textContent = 'Never updated'; // Set initial text if no data exists
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
       alert('Failed to fetch user data. Please try again.');
+      profileLastUpdate.textContent = 'Error loading update date.'; // Indicate error in displaying date
     }
 
     // Handle profile picture update
@@ -77,13 +92,17 @@ onAuthStateChanged(auth, async (user) => {
             const downloadURL = await getDownloadURL(storageRef);
             console.log('Download URL:', downloadURL);
 
-            // Update profile picture in Firestore
-            await setDoc(userDocRef, { profilePicture: downloadURL }, { merge: true });
-            console.log('Profile picture updated in Firestore.');
+            // Update profile picture in Firestore and add last update timestamp
+            await setDoc(userDocRef, {
+              profilePicture: downloadURL,
+              lastUpdate: new Date(), // Add current timestamp on update
+            }, { merge: true });
+            console.log('Profile picture and last update timestamp updated in Firestore.');
 
-            // Update profile picture on the page
+            // Update profile picture and last update date on the page
             profilePicture.src = downloadURL;
-            console.log('Profile picture updated on the page.');
+            profileLastUpdate.textContent = new Date().toLocaleString(); // Update displayed date
+            console.log('Profile picture and last update date updated on the page.');
             alert('Profile picture updated successfully!');
           } catch (error) {
             console.error('Error uploading profile picture:', error);
@@ -98,17 +117,22 @@ onAuthStateChanged(auth, async (user) => {
     profileForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      // Update user profile data in Firestore
+      // Update user profile data in Firestore and add last update timestamp
       await setDoc(userDocRef, {
         name: profileName.value,
         surname: profileSurname.value,
+        idNum: profileIdNum.value,
         dob: profileDob.value,
         pob: profilePob.value,
         eyeColor: profileEyeColor.value,
+        phone: profilePhone.value, // Save phone number
+        lastUpdate: new Date(), // Add current timestamp on update
       }, { merge: true });
 
       alert('Profile updated successfully!');
-      window.location.href = './user.html'; // Redirect to home page
+      // Update the last updated date on the page after successful submission
+      profileLastUpdate.textContent = new Date().toLocaleString();
+      // window.location.href = './user.html'; // Redirect to home page - commented out for now
     });
 
     // Toggle Side Menu
