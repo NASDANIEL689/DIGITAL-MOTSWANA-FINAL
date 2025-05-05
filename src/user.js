@@ -14,6 +14,7 @@ onAuthStateChanged(auth, async (user) => {
     const profileIdNum = document.getElementById('profileIdNum');
     const userPhone = document.getElementById('userPhone');
     const userProfilePicture = document.getElementById('userProfilePicture');
+    const userVerificationStatusElement = document.getElementById('userVerificationStatus'); // Get the status element
 
     // Fetch user profile data from Firestore
     const userDocRef = doc(db, 'users', user.uid);
@@ -29,23 +30,17 @@ onAuthStateChanged(auth, async (user) => {
       profileIdNum.textContent = userData.idNumber || 'N/A'; // Added
       userPhone.textContent = userData.phone || 'N/A'; // Added
 
+      // Update verification status
+      if (userVerificationStatusElement) {
+        userVerificationStatusElement.textContent = userData.isVerified ? '✓' : '✗';
+        // Optional: Add class for styling (requires corresponding CSS in user.css)
+        userVerificationStatusElement.classList.add(userData.isVerified ? 'verified-status' : 'unverified-status');
+      }
+
       // Load profile picture if it exists
       if (userData.profilePicture) {
         userProfilePicture.src = userData.profilePicture;
       }
-    }
-
-    // Toggle Side Menu
-    const menuToggle = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
-    const mainContent = document.querySelector('.main-content');
-
-    // Check if elements exist before adding event listeners
-    if (menuToggle && sideMenu && mainContent) {
-      menuToggle.addEventListener('click', () => {
-        sideMenu.classList.toggle('active');
-        mainContent.classList.toggle('active');
-      });
     }
 
     // Logout button

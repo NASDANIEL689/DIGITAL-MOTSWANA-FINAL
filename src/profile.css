@@ -1,206 +1,180 @@
 /* General Styles */
-body {
+:root {
+  --primary-color: #00a3e0;     /* Light Blue (Botswana Flag) */
+  --secondary-color: #000000;   /* Black (Botswana Flag) */
+  --accent-color: #ffffff;      /* White (Botswana Flag) */
+  --background-color: #f5f7fa;
+  --success-color: #2ecc71;
+  --pending-color: #f1c40f;
+  --expired-color: #e74c3c;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  box-sizing: border-box;
 }
 
-/* Dashboard Container */
-.dashboard-container {
-  display: flex;
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  width: 95%;
-  max-width: 1400px;
-  min-height: 90vh;
-  margin: 20px auto;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Toggle Button for Side Menu */
-.menu-toggle {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: #2da0a8;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-toggle i {
-  font-size: 20px;
-}
-
-/* Side Menu */
-.side-menu {
-  width: 250px;
-  background-color: #2da0a8;
-  color: #fff;
-  padding: 20px;
+body {
+  font-family: 'Poppins', sans-serif; /* Consistent font */
+  background: var(--background-color);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  transition: transform 0.3s ease-in-out;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  transform: translateX(-100%);
+  min-height: 100vh;
+  color: var(--text-primary);
+  margin: 0;
 }
 
-.side-menu.active {
+/* Common Navbar */
+.navbar {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  padding: 0 2rem;
+}
+
+.navbar img {
+  height: 200px; /* Keep consistent logo size */
+}
+
+/* Main Container holding Sidebar and Content */
+.container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Common Sidebar */
+.sidebar {
+  width: 250px;
+  background: var(--secondary-color);
+  color: var(--accent-color);
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  transition: transform 0.3s ease;
+  /* Adjusted positioning for sticky sidebar */
+  position: fixed;
+  top: 80px; /* Below the fixed navbar */
+  left: 0;
+  bottom: 0;
+  z-index: 999; /* Below menu toggle but above content */
+  transform: translateX(-250px); /* Initially hidden */
+}
+
+.sidebar.active {
   transform: translateX(0);
 }
 
-.side-menu h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  padding-left: 50px;
-  width: 100%;
+.sidebar h3 {
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0 2rem 1rem;
+  text-align: center;
 }
 
-.side-menu ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
-
-.side-menu ul li {
-  margin-bottom: 10px;
-}
-
-.side-menu button {
-  background-color: transparent;
-  color: #fff;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: 1px solid #fff;
-  border-radius: 8px;
-  width: 100%;
-  cursor: pointer;
-  text-align: left;
-}
-
-.side-menu button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  padding: 40px;
+.sidebar a {
+  color: var(--accent-color);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+.sidebar a:hover {
+  background: var(--primary-color);
+  transform: translateX(10px);
+}
+
+.sidebar a.active {
+   background: var(--primary-color); /* Active state */
+}
+
+/* Main Content Area */
+.main {
+  flex-grow: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column; /* Changed to column */
+  align-items: center; /* Center content horizontally */
+  overflow-y: auto;
+  /* Adjusted margin for sidebar */
   margin-left: 0;
   transition: margin-left 0.3s ease-in-out;
-  width: 100%;
+  width: 100%; /* Take full width initially */
+  padding-top: calc(2rem + 80px); /* Add padding top for fixed navbar */
 }
 
-.main-content.active {
-  margin-left: 250px;
+/* Adjust main content margin when sidebar is active */
+.container.sidebar-active .main {
+    margin-left: 250px;
 }
 
-/* Profile Picture Container */
-.profile-picture-container {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #2da0a8;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.main h1 {
+   text-align: center;
+   margin-bottom: 30px;
+   color: var(--primary-color);
+   width: 100%; /* Ensure title takes full width for centering */
 }
 
-.profile-picture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Update Picture Button */
-.update-picture-button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: #2da0a8;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.update-picture-button:hover {
-  background-color: #1f7a7f;
-}
-
-.update-picture-button i {
-  font-size: 18px;
-}
-
-/* Profile Form Styles */
-#profileForm {
+/* --- Profile Form View Styles --- */
+#profileFormView {
   width: 100%;
   max-width: 600px;
-  margin-top: 80px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
-#profileForm .form-group {
+#profileFormView #profileForm {
+   width: 100%;
+}
+
+#profileFormView .form-group {
   margin-bottom: 20px;
   width: 100%;
 }
 
-#profileForm .form-group label {
+#profileFormView .form-group label {
   display: block;
-  font-size: 18px;
+  font-size: 1rem;
   margin-bottom: 8px;
-  color: #333;
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
-#profileForm .form-group input {
+#profileFormView .form-group input {
   width: 100%;
   padding: 12px;
-  font-size: 16px;
+  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#profileForm .form-group input:focus {
-  border-color: #2da0a8;
-  box-shadow: 0 0 5px rgba(45, 160, 168, 0.5);
+#profileFormView .form-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(0, 163, 224, 0.5);
 }
 
 /* Update Profile Button */
-#profileForm button {
-  background-color: #2da0a8;
-  color: #fff;
-  font-size: 18px;
-  padding: 15px 30px;
+#profileFormView button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  padding: 12px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -209,15 +183,231 @@ body {
   transition: background-color 0.3s ease;
 }
 
-#profileForm button:hover {
-  background-color: #1f7a7f;
+#profileFormView button[type="submit"]:hover {
+  background-color: #0082b3;
+}
+
+/* Profile Picture Section (Form View) */
+#profileFormView .profile-picture-section {
+   position: relative;
+   margin: 30px auto 0;
+   width: 120px;
+   height: 120px;
+}
+
+#profileFormView .profile-picture-container {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   overflow: hidden;
+   border: 3px solid var(--primary-color);
+   box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+#profileFormView .profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Update Picture Button (Form View) */
+#profileFormView .update-picture-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+#profileFormView .update-picture-button:hover {
+  background-color: #0082b3;
+}
+
+#profileFormView .update-picture-button i {
+  font-size: 1rem;
+}
+
+/* --- Profile Display View Styles --- */
+#profileDisplayView {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  background-color: var(--accent-color);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  overflow: hidden;
+}
+
+#profileDisplayView .profile-container {
+    width: 100%;
+}
+
+#profileDisplayView .profile-header {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+#profileDisplayView .profile-cover {
+  height: 180px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  border-radius: 15px 15px 0 0;
+}
+
+#profileDisplayView .profile-avatar-container {
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid var(--accent-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#profileDisplayView .profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#profileDisplayView .edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+#profileDisplayView .edit-avatar-btn:hover {
+  background-color: #0082b3;
+}
+
+#profileDisplayView .profile-actions {
+  position: absolute;
+  top: 190px;
+  right: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+#profileDisplayView .profile-actions button, #profileDisplayView .profile-actions a {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+#profileDisplayView .profile-actions button:hover, #profileDisplayView .profile-actions a:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+#profileDisplayView .profile-actions .icon {
+  font-size: 1rem;
+}
+
+#profileDisplayView .profile-sections {
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+#profileDisplayView .profile-section {
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: 1px solid var(--background-color);
+}
+
+#profileDisplayView .profile-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--background-color);
+  padding-bottom: 10px;
+}
+
+#profileDisplayView .info-grid, #profileDisplayView .emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+#profileDisplayView .info-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+}
+
+#profileDisplayView .info-item label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+#profileDisplayView .info-item p {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin: 0;
+  word-break: break-word;
+}
+
+#profileDisplayView .verified-badge {
+  display: inline-block;
+  background-color: var(--success-color);
+  color: var(--accent-color);
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+#profileDisplayView .address-item p {
+  white-space: pre-wrap;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .dashboard-container {
     width: 100%;
-    min-height: 100vh;
     border-radius: 0;
   }
 
@@ -225,19 +415,158 @@ body {
     padding: 20px;
   }
 
-  .profile-picture-container {
-    width: 120px;
-    height: 120px;
-    top: 20px;
-    right: 20px;
+   .main-content.active {
+    margin-left: 200px; /* Adjusted margin for smaller sidebar */
+   }
+
+   .sidebar {
+      width: 200px; /* Adjusted sidebar width */
+   }
+
+   .sidebar.active {
+    transform: translateX(0); /* Ensure it slides in */
+   }
+
+   .menu-toggle {
+      top: 10px;
+      left: 10px;
+      z-index: 1002; /* Ensure toggle is above sidebar */
+   }
+
+  /* Profile Form View Responsive */
+  #profileFormView {
+    margin-top: 20px;
+    padding: 15px;
   }
 
-  .update-picture-button {
-    width: 35px;
-    height: 35px;
+  #profileFormView .profile-picture-section {
+    margin: 20px auto 0;
+    width: 100px;
+    height: 100px;
   }
 
-  .update-picture-button i {
-    font-size: 16px;
+  #profileFormView .update-picture-button {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    bottom: 2px;
+    right: 2px;
   }
+
+   #profileFormView #profileForm button[type="submit"] {
+      padding: 10px 15px;
+      font-size: 1rem;
+   }
+
+    #profileFormView .form-group label {
+      font-size: 0.9rem;
+    }
+
+     #profileFormView .form-group input {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+  /* Profile Display View Responsive */
+  #profileDisplayView {
+     margin-top: 0;
+  }
+
+  #profileDisplayView .profile-header {
+    margin-bottom: 120px;
+  }
+
+  #profileDisplayView .profile-cover {
+    height: 140px;
+  }
+
+  #profileDisplayView .profile-avatar-container {
+    top: 80px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+     border-width: 3px;
+  }
+
+  #profileDisplayView .edit-avatar-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+   #profileDisplayView .profile-actions {
+      top: 150px;
+      right: 20px;
+      gap: 10px;
+   }
+
+  #profileDisplayView .profile-actions button, #profileDisplayView .profile-actions a {
+      font-size: 0.8rem;
+      padding: 8px 12px;
+      gap: 5px;
+   }
+
+  #profileDisplayView .profile-section h2 {
+    font-size: 1.2rem;
+  }
+
+  #profileDisplayView .info-grid, #profileDisplayView .emergency-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  #profileDisplayView .info-item {
+    padding: 8px;
+  }
+
+  #profileDisplayView .info-item label {
+    font-size: 0.8rem;
+  }
+
+  #profileDisplayView .info-item p {
+    font-size: 0.9rem;
+  }
+
+  #profileDisplayView .verified-badge {
+    font-size: 0.6rem;
+    padding: 2px 5px;
+  }
+}
+
+@media (max-width: 768px) {
+   /* Adjust main content when sidebar is active on small screens */
+   .container.sidebar-active .main {
+       margin-left: 200px;
+   }
+
+    .sidebar {
+        transform: translateX(-200px); /* Hide sidebar based on its width */
+    }
+}
+
+/* Styles for the menu toggle button (common across pages) */
+.menu-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: #0082b3;
+}
+
+.menu-toggle i {
+    font-size: 20px;
 }

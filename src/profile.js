@@ -3,177 +3,252 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-// Debugging: Check if storage is imported correctly
-console.log('Storage:', storage);
+// Get the view containers
+const profileFormView = document.getElementById('profileFormView');
+const profileDisplayView = document.getElementById('profileDisplayView');
+
+// Function to show the form view and hide the display view
+function showFormView() {
+  profileFormView.style.display = 'block';
+  profileDisplayView.style.display = 'none';
+}
+
+// Function to show the display view and hide the form view
+function showDisplayView() {
+  profileFormView.style.display = 'none';
+  profileDisplayView.style.display = 'block';
+}
+
+// Function to populate the display view with user data
+function populateDisplayView(userData) {
+  document.getElementById('displayFullName').textContent = `${userData.name || ''} ${userData.surname || ''}`.trim() || 'N/A';
+  document.getElementById('displayDob').textContent = userData.dateOfBirth || 'N/A';
+  document.getElementById('displayIdNumber').textContent = userData.idNumber || 'N/A';
+  document.getElementById('displayGender').textContent = userData.gender || 'Not specified'; // Assuming gender field exists in DB
+  document.getElementById('displayMaritalStatus').textContent = userData.maritalStatus || 'Not specified'; // Assuming maritalStatus field exists in DB
+  document.getElementById('displayNationality').textContent = userData.nationality || 'Not specified'; // Assuming nationality field exists in DB
+  document.getElementById('displayEmail').textContent = userData.email || 'N/A'; // Assuming email field exists in DB
+  document.getElementById('displayPhone').textContent = userData.phone || 'N/A';
+  document.getElementById('displayPhysicalAddress1').textContent = userData.physicalAddress1 || 'Not specified'; // Assuming address fields exist in DB
+  document.getElementById('displayPhysicalAddress2').textContent = userData.physicalAddress2 || '';
+  document.getElementById('displayPostalAddress1').textContent = userData.postalAddress1 || 'Not specified'; // Assuming address fields exist in DB
+  document.getElementById('displayPostalAddress2').textContent = userData.postalAddress2 || '';
+  document.getElementById('displayEmergencyName').textContent = userData.emergencyName || 'Not specified'; // Assuming emergency contact fields exist in DB
+  document.getElementById('displayEmergencyRelationship').textContent = userData.emergencyRelationship || 'Not specified';
+  document.getElementById('displayEmergencyPhone1').textContent = userData.emergencyPhone1 || 'Not specified';
+  document.getElementById('displayEmergencyPhone2').textContent = userData.emergencyPhone2 || 'Not specified';
+  document.getElementById('displayEmergencyEmail').textContent = userData.emergencyEmail || 'Not specified';
+  document.getElementById('displayEmergencyPhysicalAddress1').textContent = userData.emergencyPhysicalAddress1 || 'Not specified';
+  document.getElementById('displayEmergencyPhysicalAddress2').textContent = userData.emergencyPhysicalAddress2 || '';
+
+  const displayProfilePicture = document.getElementById('displayProfilePicture');
+   if (userData.profilePicture) {
+        displayProfilePicture.src = userData.profilePicture;
+      } else {
+        displayProfilePicture.src = './public/pics/default-avatar.png'; // Default image
+      }
+}
+
+// Function to populate the form view with user data
+function populateFormView(userData) {
+  document.getElementById('profileName').value = userData.name || '';
+  document.getElementById('profileSurname').value = userData.surname || '';
+  document.getElementById('profileIdNum').value = userData.idNumber || '';
+  document.getElementById('profileDob').value = userData.dateOfBirth || '';
+  document.getElementById('profilePob').value = userData.pob || '';
+  document.getElementById('profileEyeColor').value = userData.eyeColor || '';
+  document.getElementById('profilePhone').value = userData.phone || '';
+
+   const profileLastUpdate = document.getElementById('profileLastUpdate');
+   if (userData.lastUpdate) {
+    const lastUpdateDate = new Date(userData.lastUpdate.seconds * 1000);
+    profileLastUpdate.textContent = lastUpdateDate.toLocaleString();
+  } else {
+    profileLastUpdate.textContent = 'Never updated';
+  }
+
+  const profilePicture = document.getElementById('profilePicture');
+   if (userData.profilePicture) {
+        profilePicture.src = userData.profilePicture;
+      } else {
+        profilePicture.src = './public/pics/default-avatar.png'; // Default image
+      }
+}
+
+// Function to check if essential profile data is complete
+function isProfileComplete(userData) {
+  return userData.name && userData.surname && userData.idNumber && userData.dateOfBirth && userData.pob && userData.eyeColor && userData.phone;
+}
 
 // Check if the user is authenticated
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log('User is signed in:', user.uid);
 
-    // Declare userDocRef at the top of the function
     const userDocRef = doc(db, 'users', user.uid);
+    const userDoc = await getDoc(userDocRef);
 
-    // User is signed in
-    const profileForm = document.getElementById('profileForm');
-    const profileName = document.getElementById('profileName');
-    const profileSurname = document.getElementById('profileSurname');
-    const profileIdNum = document.getElementById('profileIdNum');
-    const profileDob = document.getElementById('profileDob');
-    const profilePob = document.getElementById('profilePob');
-    const profileEyeColor = document.getElementById('profileEyeColor');
-    const profilePhone = document.getElementById('profilePhone'); // Added phone element
-    const profileLastUpdate = document.getElementById('profileLastUpdate'); // Added last update element
-    const profilePicture = document.getElementById('profilePicture');
-    const updatePictureButton = document.getElementById('updatePictureButton');
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      console.log('User data:', userData);
 
-    try {
-      // Fetch user profile data from Firestore
-      console.log('Fetching user data from Firestore...');
-      const userDoc = await getDoc(userDocRef);
-
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        console.log('User data:', userData);
-
-        profileName.value = userData.name || '';
-        profileSurname.value = userData.surname || '';
-        profileIdNum.value = userData.idNum || '';
-        profileDob.value = userData.dob || '';
-        profilePob.value = userData.pob || '';
-        profileEyeColor.value = userData.eyeColor || '';
-        profilePhone.value = userData.phone || ''; // Display phone number
-
-        // Display last update date if available
-        if (userData.lastUpdate) {
-          const lastUpdateDate = new Date(userData.lastUpdate.seconds * 1000); // Convert Firestore timestamp to Date object
-          profileLastUpdate.textContent = lastUpdateDate.toLocaleString(); // Display formatted date
-        } else {
-          profileLastUpdate.textContent = 'Never updated';
-        }
-
-        // Load profile picture if it exists
-        if (userData.profilePicture) {
-          console.log('Profile picture URL:', userData.profilePicture);
-          profilePicture.src = userData.profilePicture;
-        } else {
-          console.log('No profile picture found. Using default image.');
-          profilePicture.src = './public/pics/default-avatar.png'; // Default image
-        }
+      if (isProfileComplete(userData)) {
+        populateDisplayView(userData);
+        showDisplayView();
       } else {
-        console.log('No user data found in Firestore.');
-        profileLastUpdate.textContent = 'Never updated'; // Set initial text if no data exists
+        populateFormView(userData);
+        showFormView();
       }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      alert('Failed to fetch user data. Please try again.');
-      profileLastUpdate.textContent = 'Error loading update date.'; // Indicate error in displaying date
+    } else {
+      console.log('No user data found in Firestore. Showing form view.');
+      showFormView(); // Show form if no data exists
     }
 
-    // Handle profile picture update
-    updatePictureButton.addEventListener('click', () => {
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = 'image/*';
-      fileInput.onchange = async (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          try {
-            console.log('File selected:', file.name);
-
-            // Upload the file to Firebase Storage
-            const storageRef = ref(storage, `profile-pictures/${user.uid}`);
-            console.log('Uploading file to Firebase Storage...');
-            const uploadResult = await uploadBytes(storageRef, file);
-            console.log('File uploaded successfully:', uploadResult);
-
-            // Get the download URL of the uploaded file
-            console.log('Getting download URL...');
-            const downloadURL = await getDownloadURL(storageRef);
-            console.log('Download URL:', downloadURL);
-
-            // Update profile picture in Firestore and add last update timestamp
-            await setDoc(userDocRef, {
-              profilePicture: downloadURL,
-              lastUpdate: new Date(), // Add current timestamp on update
-            }, { merge: true });
-            console.log('Profile picture and last update timestamp updated in Firestore.');
-
-            // Update profile picture and last update date on the page
-            profilePicture.src = downloadURL;
-            profileLastUpdate.textContent = new Date().toLocaleString(); // Update displayed date
-            console.log('Profile picture and last update date updated on the page.');
-            alert('Profile picture updated successfully!');
-          } catch (error) {
-            console.error('Error uploading profile picture:', error);
-            alert('Failed to upload profile picture. Please try again.');
-          }
-        }
-      };
-      fileInput.click();
-    });
-
-    // Handle form submission
+    // Handle form submission (inside onAuthStateChanged to access userDocRef)
+    const profileForm = document.getElementById('profileForm');
     profileForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      // Update user profile data in Firestore and add last update timestamp
-      await setDoc(userDocRef, {
-        name: profileName.value,
-        surname: profileSurname.value,
-        idNum: profileIdNum.value,
-        dob: profileDob.value,
-        pob: profilePob.value,
-        eyeColor: profileEyeColor.value,
-        phone: profilePhone.value, // Save phone number
-        lastUpdate: new Date(), // Add current timestamp on update
-      }, { merge: true });
+      const profileName = document.getElementById('profileName').value;
+      const profileSurname = document.getElementById('profileSurname').value;
+      const profileIdNum = document.getElementById('profileIdNum').value;
+      const profileDob = document.getElementById('profileDob').value;
+      const profilePob = document.getElementById('profilePob').value;
+      const profileEyeColor = document.getElementById('profileEyeColor').value;
+      const profilePhone = document.getElementById('profilePhone').value;
 
-      alert('Profile updated successfully!');
-      // Update the last updated date on the page after successful submission
-      profileLastUpdate.textContent = new Date().toLocaleString();
-      // window.location.href = './user.html'; // Redirect to home page - commented out for now
+      const updatedData = {
+        name: profileName,
+        surname: profileSurname,
+        idNumber: profileIdNum,
+        dateOfBirth: profileDob,
+        pob: profilePob,
+        eyeColor: profileEyeColor,
+        phone: profilePhone,
+        lastUpdate: new Date(),
+      };
+
+      try {
+        await setDoc(userDocRef, updatedData, { merge: true });
+        alert('Profile updated successfully!');
+
+        // After update, re-fetch data and switch view if complete
+        const updatedUserDoc = await getDoc(userDocRef);
+        if (updatedUserDoc.exists()) {
+          const updatedUserData = updatedUserDoc.data();
+           if (isProfileComplete(updatedUserData)) {
+            populateDisplayView(updatedUserData);
+            showDisplayView();
+          } else {
+            populateFormView(updatedUserData); // Stay in form view if still incomplete
+            showFormView();
+          }
+        }
+
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        alert('Failed to update profile. Please try again.');
+      }
     });
+
+     // Handle profile picture update (inside onAuthStateChanged)
+    const updatePictureButton = document.getElementById('updatePictureButton');
+     if (updatePictureButton) {
+      updatePictureButton.addEventListener('click', () => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.onchange = async (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            try {
+              const storageRef = ref(storage, `profile-pictures/${user.uid}`);
+              await uploadBytes(storageRef, file);
+              const downloadURL = await getDownloadURL(storageRef);
+
+              await setDoc(userDocRef, {
+                profilePicture: downloadURL,
+                lastUpdate: new Date(),
+              }, { merge: true });
+
+              alert('Profile picture updated successfully!');
+
+               // After picture update, re-fetch data and update views
+              const updatedUserDoc = await getDoc(userDocRef);
+              if (updatedUserDoc.exists()) {
+                const updatedUserData = updatedUserDoc.data();
+                // Update picture in both views if they exist
+                const formProfilePicture = document.getElementById('profilePicture');
+                if(formProfilePicture) formProfilePicture.src = updatedUserData.profilePicture || './public/pics/default-avatar.png';
+                const displayProfilePicture = document.getElementById('displayProfilePicture');
+                 if(displayProfilePicture) displayProfilePicture.src = updatedUserData.profilePicture || './public/pics/default-avatar.png';
+
+                 // Update last updated date in form view
+                const profileLastUpdate = document.getElementById('profileLastUpdate');
+                 if (updatedUserData.lastUpdate && profileLastUpdate) {
+                  const lastUpdateDate = new Date(updatedUserData.lastUpdate.seconds * 1000);
+                  profileLastUpdate.textContent = lastUpdateDate.toLocaleString();
+                }
+
+                // Re-evaluate view based on data completeness
+                 if (isProfileComplete(updatedUserData)) {
+                  populateDisplayView(updatedUserData);
+                  showDisplayView();
+                } else {
+                   populateFormView(updatedUserData); // Stay in form view if still incomplete
+                   showFormView();
+                }
+              }
+
+            } catch (error) {
+              console.error('Error uploading profile picture:', error);
+              alert('Failed to upload profile picture. Please try again.');
+            }
+          }
+        };
+        fileInput.click();
+      });
+    }
+
+    // Handle Edit Profile button click (inside onAuthStateChanged)
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    if (editProfileBtn) {
+      editProfileBtn.addEventListener('click', async () => {
+        // Fetch latest data before showing form
+        const userDoc = await getDoc(userDocRef);
+         if (userDoc.exists()) {
+          populateFormView(userDoc.data());
+        }
+        showFormView();
+      });
+    }
 
     // Toggle Side Menu
     const menuToggle = document.getElementById('menuToggle');
     const sideMenu = document.getElementById('sideMenu');
     const mainContent = document.querySelector('.main-content');
 
-    menuToggle.addEventListener('click', () => {
-      sideMenu.classList.toggle('active');
-      mainContent.classList.toggle('active');
-    });
+     if (menuToggle && sideMenu && mainContent) {
+      menuToggle.addEventListener('click', () => {
+        sideMenu.classList.toggle('active');
+        mainContent.classList.toggle('active');
+      });
+    }
 
     // Logout button
     const logoutButton = document.getElementById('logoutButton');
-    logoutButton.addEventListener('click', () => {
-      signOut(auth)
-        .then(() => {
-          window.location.href = './index.html';
-        })
-        .catch((error) => {
-          console.error('Error signing out:', error);
-        });
-    });
+     if (logoutButton) {
+      logoutButton.addEventListener('click', () => {
+        signOut(auth)
+          .then(() => {
+            window.location.href = './index.html';
+          })
+          .catch((error) => {
+            console.error('Error signing out:', error);
+          });
+      });
+    }
 
-    // Home button
-    const homeButton = document.getElementById('homeButton');
-    homeButton.addEventListener('click', () => {
-      window.location.href = 'user.html';
-    });
-
-    // Profile button
-    const profileButton = document.getElementById('profileButton');
-    profileButton.addEventListener('click', () => {
-      window.location.href = './profile.html';
-    });
-
-    // Settings button
-    const settingsButton = document.getElementById('settingsButton');
-    settingsButton.addEventListener('click', () => {
-      alert('Settings feature coming soon!');
-    });
   } else {
     // User is not signed in, redirect to login page
     window.location.href = 'index.html';

@@ -1,6 +1,6 @@
 import { auth, db } from './firebase.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 // Debug: Log Firebase initialization
 console.log('Firebase auth:', auth);
@@ -161,13 +161,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const user = result.user;
 
-      // Update last login time
-      await setDoc(doc(db, 'users', user.uid), {
-        lastLogin: new Date().toISOString()
-      }, { merge: true });
+      // Log the authenticated user's email for debugging
+      console.log('Logged in user email:', user.email);
 
-      // Redirect to the user page after successful login
-      window.location.href = './user.html';
+      // Check if the logged-in user is the official user
+      if (user.email === 'official@gmail.com') {
+        window.location.href = './official_verification.html';
+      } else {
+         // Update last login time for regular users
+        await setDoc(doc(db, 'users', user.uid), {
+          lastLogin: new Date().toISOString()
+        }, { merge: true });
+        // Redirect to the user page after successful login for regular users
+        window.location.href = './user.html';
+      }
+
     } catch (error) {
       console.error('Error signing in:', error);
       const errorMessage = getErrorMessage(error);

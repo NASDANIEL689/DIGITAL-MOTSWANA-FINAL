@@ -5,6 +5,7 @@
   --background-color: #f5f7fa;
   --success-color: #2ecc71;
   --pending-color: #f1c40f;
+  --expired-color: #e74c3c; /* Added color for expired status */
   --text-primary: #2c3e50;
   --text-secondary: #7f8c8d;
   --shadow-color: rgba(0, 0, 0, 0.1);
@@ -109,6 +110,14 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  flex-wrap: wrap; /* Allow content area items to wrap */
+}
+
+/* Center h2 titles within content-area */
+.content-area h2 {
+  text-align: center;
+  width: 100%; /* Ensure h2 takes full width to center properly */
+  margin-bottom: 1.5rem; /* Add some space below the title */
 }
 
 .left-group, .right-group {
@@ -118,11 +127,13 @@ body {
 }
 
 .left-group {
-  flex: 3;
+  flex: 3; /* Adjust flex basis for better wrapping */
+  min-width: 300px;
 }
 
 .right-group {
-  flex: 2;
+  flex: 2; /* Adjust flex basis for better wrapping */
+  min-width: 300px;
 }
 
 .user-info {
@@ -133,11 +144,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* Allow user info items to wrap */
 }
 
 .user-info img {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 15px;
   object-fit: cover;
   border: 3px solid var(--primary-color);
@@ -146,6 +158,7 @@ body {
 .user-info .info-text {
   flex: 1;
   padding-right: 2rem;
+  min-width: 250px; /* Ensure info text doesn't get too small */
 }
 
 .user-info .info-text h3 {
@@ -168,6 +181,7 @@ body {
 .box-row {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap; /* Allow boxes to wrap */
 }
 
 .extra-box {
@@ -178,6 +192,7 @@ body {
   flex: 1;
   min-height: 200px;
   transition: transform 0.3s ease;
+  min-width: 250px; /* Ensure extra boxes don't get too small */
 }
 
 .extra-box:hover {
@@ -196,6 +211,59 @@ body {
   box-shadow: 0 4px 12px var(--shadow-color);
   padding: 1.5rem;
   min-height: 400px;
+}
+
+/* Documents Page Styles */
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for documents */
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.document-card {
+  background: var(--accent-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.document-card:hover {
+  transform: translateY(-5px);
+}
+
+.document-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.document-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.document-card .status {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.document-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Push buttons to the bottom */
+}
+
+.document-actions button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .document-list {
@@ -224,6 +292,10 @@ body {
 
 .pending {
   color: var(--pending-color);
+}
+
+.expired {
+  color: var(--expired-color);
 }
 
 .activity-list p {
@@ -299,6 +371,7 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap; /* Allow ID card content to wrap */
 }
 
 .id-picture img {
@@ -343,6 +416,242 @@ body {
   background-color: #1f7a7f;
 }
 
+/* Verification Page Styles */
+.verification-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid columns */
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.verification-card {
+  background: var(--accent-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.verification-card:hover {
+  transform: translateY(-5px);
+}
+
+.verification-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.verification-status i {
+  font-size: 2rem;
+}
+
+.verification-status h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.verification-status.completed i {
+  color: var(--success-color);
+}
+
+.verification-status.pending i {
+  color: var(--pending-color);
+}
+
+.verification-status.expired i {
+  color: var(--expired-color);
+}
+
+.verification-details {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.verification-details span {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.verification-details i {
+  margin-right: 0.5rem;
+}
+
+.verification-card button {
+  align-self: flex-start; /* Align button to the start */
+  margin-top: 1rem;
+}
+
+.verification-timeline {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.verification-timeline h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.timeline .timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.3em;
+}
+
+.timeline-dot.completed { background-color: var(--success-color); }
+.timeline-dot.pending { background-color: var(--pending-color); }
+.timeline-dot.expired { background-color: var(--expired-color); }
+
+.timeline-content {
+  flex-grow: 1;
+}
+
+.timeline-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.timeline-content p {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.timeline-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Add a vertical line to the timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px; /* Adjust to align with dots */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #ccc;
+  z-index: 0;
+}
+
+.timeline-item {
+  position: relative;
+  z-index: 1; /* Ensure items are above the line */
+}
+
+/* General Buttons */
+.btn-primary, .btn-secondary {
+  background: var(--primary-color);
+  color: var(--accent-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #0082b3;
+}
+
+.btn-secondary {
+  background: var(--text-secondary);
+}
+
+.btn-secondary:hover {
+  background: #6c7a7d;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-content .close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.status-details p {
+  margin-bottom: 10px;
+}
+
+.status-details strong {
+  color: var(--primary-color);
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  color: var(--accent-color);
+  z-index: 1100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notification.success {
+  background-color: var(--success-color);
+}
+
+.notification.error {
+  background-color: var(--expired-color);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .dashboard-container {
@@ -351,11 +660,176 @@ body {
     border-radius: 0;
   }
 
-  .main-content {
-    padding: 20px;
+  .sidebar {
+    width: 200px;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .content-area {
+    flex-direction: column; /* Stack content area items vertically */
+    gap: 1rem;
+  }
+
+  .left-group, .right-group {
+    min-width: 100%;
+  }
+
+  .user-info {
+    flex-direction: column; /* Stack user info items vertically */
+    text-align: center;
+  }
+
+  .user-info .info-text {
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .user-info img {
+    margin-bottom: 1rem;
+  }
+
+  .box-row {
+    flex-direction: column; /* Stack box-row items vertically */
+    gap: 1rem;
+  }
+
+  .extra-box {
+     min-width: 100%;
   }
 
   .id-card {
     max-width: 100%;
+    padding: 20px;
   }
+
+  .id-card-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .id-picture {
+    margin-bottom: 1rem;
+  }
+
+  .id-details p {
+    font-size: 16px;
+  }
+
+  .services button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  /* Verification Page Responsive Adjustments */
+  .verification-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust grid columns for smaller screens */
+    gap: 1rem;
+  }
+
+  .verification-card {
+    padding: 1rem;
+  }
+
+  .verification-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .verification-status i {
+    font-size: 1.5rem;
+  }
+
+   .verification-status h3 {
+    font-size: 1.1rem;
+  }
+
+  .verification-details {
+    text-align: center;
+  }
+
+  .verification-card button {
+     align-self: stretch; /* Make button full width */
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-dot {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+   .timeline::before {
+    left: 5.5px; /* Adjust line position */
+   }
+
+  .timeline-content {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .timeline-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .timeline-content p {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .timeline-date {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  /* Documents Page Responsive Adjustments */
+   .documents-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Further adjust grid columns for smaller screens */
+    gap: 1rem;
+  }
+
+  .document-card {
+    padding: 1rem;
+  }
+
+  .document-icon {
+    font-size: 2.5rem;
+  }
+
+  .document-card h3 {
+    font-size: 1rem;
+  }
+
+  .document-actions button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+#userId {
+  display: none;
+}
+
+/* Styles for verification status */
+#userVerificationStatus.verified-status {
+  color: var(--success-color);
+  font-size: 1.7em; /* Increased size */
+}
+
+#userVerificationStatus.unverified-status {
+  color: var(--expired-color);
+  font-size: 1.7em; /* Increased size */
 }

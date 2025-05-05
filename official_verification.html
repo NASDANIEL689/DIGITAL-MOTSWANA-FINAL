@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official User Verification</title>
+    <link rel="stylesheet" href="./src/user.css"> <!-- Reusing the user CSS for basic styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+        .user-verification-list {
+            margin-top: 20px;
+        }
+        .user-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user-details {
+            flex-grow: 1;
+        }
+        .user-details h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+        .user-details p {
+            margin: 0 0 3px 0;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+        .verification-status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            min-width: 80px;
+            text-align: center;
+        }
+        .verified-status {
+            background-color: var(--success-color);
+            color: white;
+        }
+        .unverified-status {
+            background-color: var(--expired-color);
+            color: white;
+        }
+        .verify-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .verify-button:hover {
+            background-color: #0082b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+      <img src="./public/pics/digital_mo-removebg-preview.png" alt="Digital Motswana IMS Logo">
+    </div>
+
+    <div class="container">
+      <aside class="sidebar" id="sidebar">
+        <h3>Official Panel</h3>
+        <a href="#" class="active"><span class="icon"><i class="fas fa-user-check"></i></span>Verify Users</a>
+        <!-- Add other official links here -->
+      </aside>
+
+      <main class="main">
+        <div class="content-area">
+            <h2>User Verification</h2>
+            <div class="user-verification-list" id="userList">
+                <!-- User items will be loaded here by JavaScript -->
+                <p>Loading users...</p>
+            </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./src/official_verification.js"></script>
+</body>
+</html>

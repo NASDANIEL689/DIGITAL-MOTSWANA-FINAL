@@ -19,14 +19,14 @@
     <div class="container">
       <aside class="sidebar" id="sidebar">
         <h3>Navigation</h3>
-        <a href="#" id="homeButton"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
-        <a href="profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
-        <a href="documents.html" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
-        <a href="security" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
-        <a href="verification" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
-        <a href="announcements.html" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
-        <a href="support.html" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
-        <a href="index.html" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
+        <a href="./user.html" id="homeButton" class="active"><span class="icon"><i class="fas fa-home"></i></span>Home</a>
+        <a href="./profile.html" id="profileButton"><span class="icon"><i class="fas fa-user"></i></span>Profile</a>
+        <a href="./documents.html" id="documentsButton"><span class="icon"><i class="fas fa-file-alt"></i></span>My Documents</a>
+        <a href="./security.html" id="securityButton"><span class="icon"><i class="fas fa-shield-alt"></i></span>Security</a>
+        <a href="./verification.html" id="verificationButton"><span class="icon"><i class="fas fa-check-circle"></i></span>Verification</a>
+        <a href="./announcements.html" id="announcementsButton"><span class="icon"><i class="fas fa-bullhorn"></i></span>Announcements</a>
+        <a href="./support.html" id="supportButton"><span class="icon"><i class="fas fa-headset"></i></span>Support</a>
+        <a href="./index.html" id="logoutButton"><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Log Out</a>
       </aside>
 
       <main class="main">
@@ -36,12 +36,14 @@
               <div class="info-text">
                 <h3><span id="userName">Loading...</span></h3>
                 <div class="info-grid">
+                 
                   <div><strong>Date of Birth:</strong> <span id="userDob">Loading...</span></div>
                   <div><strong>ID Number:</strong> <span id="profileIdNum">Loading...</span></div>
-                  <div><strong>Status:</strong> <span class="verified">Verified ✓</span></div>
+                  <div><strong>Status:</strong> <span id="userVerificationStatus">Loading...</span></div>
                   <div><strong>Last Updated:</strong> <span id="lastUpdated">Loading...</span></div>
                   <div><strong>Email:</strong> <span id="userEmail">Loading...</span></div>
                   <div><strong>Phone:</strong> <span id="userPhone">Loading...</span></div>
+                  <div><strong>User ID:</strong> <span id="userId">Loading...</span></div>
                 </div>
               </div>
               <img id="userProfilePicture" src="https://banner2.cleanpng.com/lnd/20240806/xl/3770fe02ff172d4531ec0aaf53417e.webp" alt="Profile Picture">
