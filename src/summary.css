@@ -1,0 +1,465 @@
+/* Styles specific to the User Summary page - Professional Look */
+
+:root {
+    /* Redefining or confirming professional color palette */
+    --primary-color: #0056b3; /* A professional blue */
+    --secondary-color: #f2f2f2; /* Light grey for backgrounds/borders */
+    --accent-color: #ffffff; /* White for main content areas */
+    --text-primary: #333; /* Dark grey for main text */
+    --text-secondary: #555; /* Slightly lighter grey for labels/less important text */
+    --border-color: #ddd; /* Light grey for borders */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    --success-color: #28a745; /* Green for success */
+    --pending-color: #ffc107; /* Yellow for pending */
+    --expired-color: #dc3545; /* Red for errors/expired */
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Professional font stack */
+    font-size: 1rem; /* Standard base font size */
+    line-height: 1.6; /* Improved readability */
+    color: var(--text-primary);
+    background-color: var(--secondary-color); /* Light grey background for the page */
+    margin: 0;
+    padding: 20px;
+}
+
+.summary-page {
+    padding: 30px; /* Increased padding */
+    max-width: 1000px; /* Increased max-width for a wider container */
+    margin: 20px auto; /* Center the content */
+    background-color: var(--accent-color); /* White background */
+    border-radius: 8px; /* Slightly smaller border-radius for a cleaner look */
+    box-shadow: 0 4px 12px var(--shadow-color); /* Refined shadow */
+    border: 1px solid var(--border-color); /* Add a subtle border */
+}
+
+.summary-page h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 40px; /* More space below main heading */
+    font-size: 2rem; /* Slightly larger main heading */
+    font-weight: 600; /* Semi-bold */
+    border-bottom: 2px solid var(--primary-color); /* More prominent separator */
+    padding-bottom: 15px; /* Space below heading and separator */
+}
+
+.summary-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px; /* More space below header section */
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0; /* Remove bottom padding as margin handles space */
+    border-bottom: none; /* Remove border as main layout has its own */
+}
+
+/* Verification section - main item in the header */
+.verification-section {
+    flex-grow: 0; /* Prevent growing unnecessarily in header */
+    flex-shrink: 0;
+    min-width: 300px; /* Ensure a reasonable minimum width */
+    background-color: var(--background-color); /* Light background */
+    padding: 25px; /* Increased padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color); /* Subtle shadow */
+    text-align: center;
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+.verification-section h3 {
+    color: var(--text-primary); /* Dark grey heading */
+    margin-top: 0;
+    margin-bottom: 20px; /* More space below heading */
+    font-size: 1.5rem; /* Larger heading */
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color); /* Subtle separator */
+    padding-bottom: 10px;
+}
+
+.verification-status {
+    font-size: 1.3rem; /* Increased font size */
+    font-weight: 700; /* Bold */
+    margin-top: 15px; /* More space above status */
+    padding: 10px 15px; /* Increased padding */
+    border-radius: 5px;
+    display: inline-block;
+    text-transform: uppercase; /* Uppercase for emphasis */
+    letter-spacing: 0.5px; /* Slightly increased letter spacing */
+}
+
+.verification-status i {
+    margin-right: 10px; /* Increased space for icon */
+    font-size: 1.4rem; /* Slightly larger icon */
+}
+
+.verification-status.completed {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.verification-status.pending {
+    background-color: var(--pending-color);
+    color: var(--text-primary); /* Dark text for contrast */
+}
+
+.verification-status.unknown,
+.verification-status.error {
+    background-color: var(--expired-color); /* Use red for errors/unknown */
+    color: white;
+}
+
+.verification-details {
+    margin-top: 15px; /* More space above details */
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Main Layout: two columns on large screens */
+.main-summary-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Increased space between columns/sections */
+    margin-bottom: 40px; /* More space below this main section */
+    align-items: flex-start;
+}
+
+/* Container for stacked sections - right column on large screens */
+.stacked-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between stacked sections */
+    flex-grow: 1;
+    min-width: 300px;
+}
+
+/* Base styles for the main content sections */
+.user-info-section,
+.emergency-contact-section,
+.documents-section {
+    min-width: 300px; /* Minimum width remains */
+    margin-bottom: 0;
+    padding: 25px; /* Increased padding */
+    background-color: var(--background-color); /* Light background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+/* Section Headings */
+.user-info-section h3,
+.documents-section h3,
+.emergency-contact-section h4 {
+    color: var(--primary-color);
+    font-size: 1.4rem; /* Slightly larger section headings */
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color); /* Consistent separator */
+}
+
+/* Info Grid for details */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax for slightly larger items */
+    gap: 20px; /* Increased space between grid items */
+}
+
+.info-item label {
+    font-weight: 600; /* Semi-bold labels */
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem; /* Label font size */
+}
+
+.info-item p {
+    margin: 0;
+    color: var(--text-secondary); /* Dark grey for values */
+    font-size: 1.1rem; /* Increased value font size */
+    word-break: break-word; /* Prevent long words from overflowing */
+}
+
+.info-item .full-width {
+    grid-column: 1 / -1;
+}
+
+/* Profile Picture Container */
+.profile-picture-container {
+    width: 120px; /* Slightly larger profile picture */
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--secondary-color); /* Light grey placeholder */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 2px solid var(--primary-color); /* Primary color border */
+}
+
+#summaryProfilePicture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Documents Section */
+.documents-section .document-list {
+    margin-top: 15px;
+}
+
+.document-item {
+    background-color: var(--accent-color); /* White background */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 12px 18px; /* Increased padding */
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px var(--shadow-color); /* Refined shadow */
+    transition: all 0.2s ease-in-out; /* Smooth transition for hover */
+}
+
+.document-item:hover {
+    background-color: var(--secondary-color); /* Hover effect */
+}
+
+.document-item .icon {
+    margin-right: 15px; /* Increased space */
+    color: var(--primary-color);
+    font-size: 1.4rem; /* Increased icon size */
+}
+
+.document-item .doc-name {
+    flex-grow: 1;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.document-item .status {
+    font-size: 0.9rem; /* Slightly smaller status font */
+    padding: 5px 10px; /* Adjusted padding */
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase; /* Uppercase status */
+}
+
+.document-item .status.verified {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.document-item .status.pending {
+    background-color: var(--pending-color);
+    color: var(--text-primary);
+}
+
+.document-item .status.expired {
+    background-color: var(--expired-color);
+    color: white;
+}
+
+/* QR Code Container styles */
+.qr-code-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 180px; /* Slightly larger QR code */
+    text-align: center;
+    margin: 20px auto; /* Center and add vertical space when stacked */
+    padding: 15px; /* Increased padding */
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+.qr-code-container h3 {
+     color: var(--text-primary); /* Dark grey heading */
+     font-size: 1.2rem; /* Slightly smaller heading for QR */
+     margin-bottom: 15px;
+     padding-bottom: 5px;
+     border-bottom: 1px solid var(--border-color);
+}
+
+/* Responsive adjustments */
+@media (min-width: 769px) {
+    .main-summary-layout {
+         flex-direction: row;
+         align-items: flex-start;
+    }
+
+    .user-info-section {
+        flex-basis: 0;
+        flex-grow: 3; /* Personal Info takes proportional space */
+        min-width: 0;
+    }
+
+     .stacked-sections {
+         flex-basis: 0;
+         flex-grow: 2; /* Stacked sections take proportional space */
+         min-width: 0;
+     }
+
+     .user-info-section .info-grid { /* Layout for profile picture and info items */
+        display: flex;
+        gap: 30px; /* Increased gap */
+        flex-wrap: wrap;
+        align-items: flex-start;
+     }
+
+     .user-info-section .info-grid .profile-picture-container {
+        margin-bottom: 0;
+     }
+
+     .user-info-section .info-grid .info-grid-details { /* Container for info items grid */
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax for larger info items */
+        gap: 20px; /* Increased gap */
+     }
+
+    /* Ensure sections within stacked-sections take full width of the column */
+    .stacked-sections > section,
+    .stacked-sections > div {
+        width: 100%;
+    }
+
+    /* Adjust QR code container centering in the stacked column */
+     .qr-code-container {
+         margin-left: auto;
+         margin-right: auto;
+     }
+}
+
+/* Responsive adjustments for smaller screens (single-column layout) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .summary-page {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .summary-page h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    .summary-header {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .verification-section {
+        min-width: 100%;
+        flex-basis: auto;
+        padding: 20px;
+    }
+
+     .verification-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+     }
+
+     .verification-status {
+        font-size: 1.1rem;
+        padding: 6px 10px;
+     }
+
+     .verification-status i {
+         font-size: 1.2rem;
+     }
+
+    .main-summary-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+     .stacked-sections {
+         flex-direction: column;
+         gap: 20px; /* Slightly less space when stacked on small screens */
+         min-width: 100%;
+     }
+
+     /* Ensure all main sections take full width and have appropriate spacing */
+     .user-info-section,
+     .documents-section,
+     .emergency-contact-section,
+     .qr-code-container {
+         min-width: 100%;
+         flex-basis: auto;
+         margin-bottom: 0; /* Gap is handled by parent */
+         padding: 20px;
+     }
+
+    .user-info-section h3,
+    .documents-section h3,
+    .emergency-contact-section h4 {
+         font-size: 1.2rem;
+         margin-bottom: 15px;
+    }
+
+     .user-info-section .info-grid { /* Stack info grid items */
+        flex-direction: column;
+        gap: 15px;
+     }
+
+     .info-grid {
+         grid-template-columns: 1fr; /* Single column grid on small screens */
+         gap: 15px;
+     }
+
+     .user-info-section .info-grid .profile-picture-container { /* Center profile picture */
+         margin: 0 auto 15px auto; /* Center and add bottom margin */
+         width: 100px;
+         height: 100px;
+     }
+
+     .profile-picture-container {
+         width: 100px; /* Adjust size on small screens */
+         height: 100px;
+     }
+
+     .qr-code-container {
+         width: 150px; /* Adjust size on small screens */
+         max-width: 100%;
+         margin-left: auto;
+         margin-right: auto; /* Center the QR code container */
+         padding: 10px;
+     }
+
+    .qr-code-container h3 {
+         font-size: 1.1rem;
+         margin-bottom: 10px;
+     }
+
+    .document-item {
+        padding: 10px 15px;
+    }
+
+    .document-item .icon {
+         margin-right: 10px;
+         font-size: 1.1rem;
+    }
+
+     .document-item .doc-name {
+         font-size: 1rem;
+     }
+
+     .document-item .status {
+         font-size: 0.8rem;
+         padding: 3px 6px;
+     }
+
+}

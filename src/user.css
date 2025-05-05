@@ -819,9 +819,7 @@ body {
   }
 }
 
-#userId {
-  display: none;
-}
+
 
 /* Styles for verification status */
 #userVerificationStatus.verified-status {

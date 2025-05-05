@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Summary</title>
+    <link rel="stylesheet" href="src/summary.css"> <!-- Link to the new summary-specific styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <main class="main">
+            <div class="content-area summary-page"> <!-- Added summary-page class for specific styling -->
+                <h2>User Summary</h2>
+
+                <!-- Top section: Verification Status -->
+                <div class="summary-header"> <!-- Container for Verification -->
+                    <section class="verification-section"> <!-- Verification section -->
+                        <h3>Verification Status</h3>
+                         <!-- Display clear verification status relevant for official validation -->
+                         <!-- The JS (summary.js) will populate the content within this section -->
+                         <div id="verificationStatusContent">
+                             <p><span id="summaryVerificationStatus">Loading verification status...</span></p>
+                         </div>
+                         <!-- Consider adding details about the verification process or level of verification -->
+                    </section>
+                </div>
+
+                <!-- Main Layout: potentially two columns on large screens -->
+                <div class="main-summary-layout">
+                    <!-- Column 1: Personal Info -->
+                    <section class="user-info-section"> <!-- Renamed for clarity -->
+                        <h3>Personal Information</h3>
+                        <!-- Profile Picture moved here -->
+                        <div class="profile-picture-container"> <!-- Container for profile picture -->
+                            <img id="summaryProfilePicture" src="placeholder.jpg" alt="Profile Picture">
+                        </div>
+                        <!-- User information will be loaded here by summary.js -->
+                        <div class="info-grid">
+                             <div class="info-item">
+                                <label>Full Name</label>
+                                <p><span id="summaryFullName">Loading...</span></p>
+                            </div>
+                             <div class="info-item">
+                                <label>Email</label>
+                                <p><span id="summaryEmail">Loading...</span></p>
+                            </div>
+                            <div class="info-item">
+                                 <label>Phone Number</label>
+                                 <p><span id="summaryPhone">Loading...</span></p>
+                             </div>
+                             <div class="info-item">
+                                 <label>ID Number</label>
+                                 <p><span id="summaryIdNumber">Loading...</span></p>
+                             </div>
+                              <div class="info-item">
+                                 <label>Date of Birth</label>
+                                 <p><span id="summaryDob">Loading...</span></p>
+                             </div>
+                             <div class="info-item">
+                                 <label>Gender</label>
+                                 <p><span id="summaryGender">Loading...</span></p>
+                             </div>
+                              <div class="info-item">
+                                 <label>Marital Status</label>
+                                 <p><span id="summaryMaritalStatus">Loading...</span></p>
+                             </div>
+                             <div class="info-item">
+                                 <label>Nationality</label>
+                                 <p><span id="summaryNationality">Loading...</span></p>
+                             </div>
+                              <div class="info-item full-width">
+                                 <label>Physical Address</label>
+                                 <p><span id="summaryPhysicalAddress1">Loading...</span></p>
+                                 <p><span id="summaryPhysicalAddress2"></span></p>
+                             </div>
+                             <div class="info-item full-width">
+                                 <label>Postal Address</label>
+                                 <p><span id="summaryPostalAddress1">Loading...</span></p>
+                                  <p><span id="summaryPostalAddress2"></span></p>
+                             </div>
+                              <div class="info-item">
+                                 <label>Member Since</label>
+                                 <p><span id="summaryMemberSince">Loading...</span></p>
+                             </div>
+                              <!-- Add any other relevant official information fields here if necessary -->
+                         </div>
+                     </section>
+
+                    <!-- Column 2: Stacked sections -->
+                    <div class="stacked-sections">
+                         <!-- Documents Section -->
+                         <section class="documents-section"> <!-- Kept existing class -->
+                             <h3>Uploaded Documents</h3>
+                             <!--
+                                 For official use via QR code scan, consider displaying document *status* and potentially providing
+                                 secure access to the documents themselves based on official authorization levels.
+                                 Ensure documents listed here are relevant and verified for official purposes.
+                             -->
+                             <div class="document-list"> <!-- Kept existing class -->
+                                  <p>Loading documents...</p>
+                                  <!-- Documents populated by JS (summary.js) -->
+                                  <!-- Example document item structure (will be populated by JS) -->
+                                  <!--
+                                  <div class="document-item">
+                                    <span>Document Name</span>
+                                    <span class="status">Status</span>
+                                  </div>
+                                  -->
+                             </div>
+                         </section>
+
+                         <!-- QR Code -->
+                         <div class="qr-code-container">
+                             <h3>QR Code</h3>
+                             <!--
+                                 This QR code is intended to be scanned by officials (police, bank, etc.)
+                                 to access this user's summary securely.
+
+                                 The QR code should encode a unique identifier for this user (like their UID).
+                                 When an official scans this code, they should be directed to a *separate*,
+                                 secure official portal or page (e.g., `official-lookup.html?userId=USER_UID`).
+
+                                 The official portal must handle authentication and authorization for officials
+                                 and then use the provided userId to securely fetch and display the summary data
+                                 via a trusted backend process, NOT directly using the client-side fetching
+                                 logic in summary.js.
+                             -->
+                             <div id="qrcode"></div>
+                         </div>
+
+                          <!-- Emergency Contact Section -->
+                          <section class="emergency-contact-section"> <!-- Created a dedicated section -->
+                              <h4>Emergency Contact</h4>
+                               <div class="info-grid">
+                                  <div class="info-item">
+                                      <label>Full Name</label>
+                                      <p><span id="summaryEmergencyName">Loading...</span></p>
+                                  </div>
+                                   <div class="info-item">
+                                      <label>Relationship</label>
+                                      <p><span id="summaryEmergencyRelationship">Loading...</span></p>
+                                  </div>
+                                  <div class="info-item">
+                                      <label>Primary Phone</label>
+                                      <p><span id="summaryEmergencyPhone1">Loading...</span></p>
+                                  </div>
+                                  <div class="info-item">
+                                      <label>Alternative Phone</label>
+                                      <p><span id="summaryEmergencyPhone2">Loading...</span></p>
+                                  </div>
+                                   <div class="info-item">
+                                      <label>Email</label>
+                                      <p><span id="summaryEmergencyEmail">Loading...</span></p>
+                                  </div>
+                                   <div class="info-item full-width">
+                                      <label>Physical Address</label>
+                                      <p><span id="summaryEmergencyPhysicalAddress1">Loading...</span></p>
+                                      <p><span id="summaryEmergencyPhysicalAddress2"></span></p>
+                                  </div>
+                              </div>
+                          </section>
+                    </div>
+                 </div>
+
+             </div>
+         </main>
+     </div>
+
+     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+     <script src="src/summary.js" type="module"></script>
+ </body>
+ </html>
